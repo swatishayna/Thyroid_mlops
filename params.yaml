@@ -4,7 +4,18 @@ base:
   target_col: Class
 
 data_source:
-  dir: data_given/
+  dir: data_given
+  allhyper: allhyper.data
+  allhypertest: allhyper.test
+  allhypo : allhypo.data
+  allhypotest: allhypo.test
+  thyroid0387: thyroid0387.data
+  hypothyroid: hypothyroid.data
+  sickeuthyroid: sick-euthyroid.data
+  anntest: ann-test.data
+  anntrain: ann-train.data
+
+
 
 load_data:
   raw_dataset: data/raw/
