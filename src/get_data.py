@@ -29,6 +29,7 @@ def get_data(config_path):
     df_anntest = pd.read_csv(os.path.join(data_path,config['data_source']['anntest']))
     df_anntrain = pd.read_csv(os.path.join(data_path,config['data_source']['anntrain']))
 
+    return df_allhyper,df_allhypertest,df_allhypo,df_allhypotest,df_thyroid0387,df_hypothyroid,df_sickeuthyroid,df_anntest,df_anntrain
     
 
 
