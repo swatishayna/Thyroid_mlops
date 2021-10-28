@@ -1,0 +1,10 @@
+base:
+  project: thyroid prediction project
+  random_state: 10
+  target_col: Class
+
+data_source:
+  dir: data_given/
+
+load_data:
+  raw_dataset: data/raw/
