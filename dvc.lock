@@ -1,0 +1,66 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/load_data.py --config=params.yaml
+    deps:
+    - path: data_given/allhyper.data
+      md5: 03825d01282c6c19dae85104c5bcacb0
+      size: 240433
+    - path: data_given/allhyper.test
+      md5: 813593c1ab76016f3abfd9bf54a7d2f3
+      size: 83585
+    - path: data_given/allhypo.data
+      md5: 4ce7483fbde2046c76f33a587e93f61b
+      size: 243239
+    - path: data_given/allhypo.test
+      md5: 3c8a18a051cbccf5a3fafe271697b2f3
+      size: 84461
+    - path: data_given/ann-test.data
+      md5: ce980cf801b4d5eeb99509c4ec03a024
+      size: 241196
+    - path: data_given/ann-train.data
+      md5: 94ef6f6e9c3eaa9dd4884ae7d829660a
+      size: 264725
+    - path: data_given/hypothyroid.data
+      md5: 377ffe765667e654775c288e7d861068
+      size: 219022
+    - path: data_given/sick-euthyroid.data
+      md5: a5ca7673d306590eedc178f14fc1ef63
+      size: 220327
+    - path: data_given/thyroid0387.data
+      md5: 42600008368a48fa362893b880c4dfb5
+      size: 772576
+    - path: src/get_data.py
+      md5: f8668211f145f696cc54450602f7b1ae
+      size: 1601
+    - path: src/load_data.py
+      md5: 61609501f9cde54397dad52cfb84673e
+      size: 1933
+    outs:
+    - path: data/raw/allhyper.data
+      md5: 08663623d8279e8218aeaab59821e3d9
+      size: 243274
+    - path: data/raw/allhyper.test
+      md5: 03334c5844675375dc941d62842c3887
+      size: 84615
+    - path: data/raw/allhypo.data
+      md5: 73c47f44dcec3d4c6570a9c01909d6d7
+      size: 246080
+    - path: data/raw/allhypo.test
+      md5: 8a00a0b39b28e685ca57dc86a77c170c
+      size: 85491
+    - path: data/raw/ann-test.data
+      md5: ce980cf801b4d5eeb99509c4ec03a024
+      size: 244624
+    - path: data/raw/ann-train.data
+      md5: 94ef6f6e9c3eaa9dd4884ae7d829660a
+      size: 268497
+    - path: data/raw/hypothyroid.data
+      md5: b8ec41d1a3349ce8f0cdc8592ffa4f0f
+      size: 222214
+    - path: data/raw/sick-euthyroid.data
+      md5: b11173745a521ae34198f84c94c86630
+      size: 223521
+    - path: data/raw/thyroid0387.data
+      md5: 4c512213ab4e50d0ef641ed72a8716a1
+      size: 781800
