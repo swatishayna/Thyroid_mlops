@@ -5,7 +5,7 @@
 
 
 import os
-from get_data import read_params,get_data
+from get_data import read_params
 import argparse
 import pandas as pd
 import numpy as np

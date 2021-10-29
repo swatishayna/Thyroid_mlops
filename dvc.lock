@@ -64,3 +64,43 @@ stages:
     - path: data/raw/thyroid0387.data
       md5: 4c512213ab4e50d0ef641ed72a8716a1
       size: 781800
+  clean_process_data:
+    cmd: python src/clean_process.py --config=params.yaml
+    deps:
+    - path: data/raw/allhyper.data
+      md5: 08663623d8279e8218aeaab59821e3d9
+      size: 243274
+    - path: data/raw/allhyper.test
+      md5: 03334c5844675375dc941d62842c3887
+      size: 84615
+    - path: data/raw/allhypo.data
+      md5: 73c47f44dcec3d4c6570a9c01909d6d7
+      size: 246080
+    - path: data/raw/allhypo.test
+      md5: 8a00a0b39b28e685ca57dc86a77c170c
+      size: 85491
+    - path: data/raw/ann-test.data
+      md5: ce980cf801b4d5eeb99509c4ec03a024
+      size: 244624
+    - path: data/raw/ann-train.data
+      md5: 94ef6f6e9c3eaa9dd4884ae7d829660a
+      size: 268497
+    - path: data/raw/hypothyroid.data
+      md5: b8ec41d1a3349ce8f0cdc8592ffa4f0f
+      size: 222214
+    - path: data/raw/sick-euthyroid.data
+      md5: b11173745a521ae34198f84c94c86630
+      size: 223521
+    - path: data/raw/thyroid0387.data
+      md5: 4c512213ab4e50d0ef641ed72a8716a1
+      size: 781800
+    - path: src/get_data.py
+      md5: f8668211f145f696cc54450602f7b1ae
+      size: 1601
+    - path: src/utils/data_cleaning.py
+      md5: 9a041ca2da25dcaadec6922b3533cec4
+      size: 4343
+    outs:
+    - path: data/processed/preprocessed_dataset.csv
+      md5: 41d8fa1db9679d40698a651b87b0f232
+      size: 2786523

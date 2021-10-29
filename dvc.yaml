@@ -25,4 +25,21 @@ stages:
     - data/raw/ann-test.data
     - data/raw/ann-train.data
 
+  clean_process_data:
+    cmd: python src/clean_process.py --config=params.yaml
+    deps:
+    - src/get_data.py
+    - src/utils/data_cleaning.py
+    - data/raw/allhyper.data
+    - data/raw/allhyper.test
+    - data/raw/allhypo.data
+    - data/raw/allhypo.test
+    - data/raw/thyroid0387.data
+    - data/raw/hypothyroid.data
+    - data/raw/sick-euthyroid.data
+    - data/raw/ann-test.data
+    - data/raw/ann-train.data
+    outs:
+    - data/processed/preprocessed_dataset.csv
+
       
