@@ -8,7 +8,8 @@ import os
 from get_data import read_params,get_data
 import argparse
 import pandas as pd
-from utils.data_cleaning import assign_columns_to_df,removenumber,cleanclasscolumn,clean_thyroid0387,clean_hypothyroid_sickeuthyroid,clean_ann
+import numpy as np
+from utils.data_cleaning import assign_columns_to_df,removenumber,cleanclasscolumn,clean_thyroid0387,clean_hypothyroid_sickeuthyroid,clean_ann,dropna_thresh,encode
 
 
 def clean_process(config_path):
@@ -79,7 +80,27 @@ def clean_process(config_path):
     
 
     #concatenating df_hh,df_thyroid0387,df_hypothyroid,df_sickeuthyroid,ann
-    data = pd.concat([df_hh,df_thyroid0387,df_hypothyroid,df_sickeuthyroid,ann], ignore_index = True)
+    df = pd.concat([df_hh,df_thyroid0387,df_hypothyroid,df_sickeuthyroid,ann], ignore_index = True)
+
+    ## there are "?" entries which denotes missingvalues or nan values replacing them
+    df=df.replace({"?":np.NAN})
+
+    # ## Dropping the rows with more than 10 nan values and columns with more than 7000 nans 
+    df = dropna_thresh(df)
+
+    ### Encoding into numerical values 
+    df = encode(df)
+    
+    # the data has very high amount of nan values interploating them
+    processed_data = df.interpolate(method = 'spline', order = 3)
+    processed_data.dropna(inplace =True)
+    print(processed_data.shape)
+
+    #saving the cleaned and processed dataset to the desired location
+    processed_data_dirpath  = config['data_cleaning_processing']['processed_dataset']
+    processed_data_filename = config['data_cleaning_processing']['processed_filename']
+    processed_data.to_csv(os.path.join(processed_data_dirpath,processed_data_filename), index = False)
+
 
 
 

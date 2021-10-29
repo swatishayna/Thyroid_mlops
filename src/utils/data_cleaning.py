@@ -86,3 +86,36 @@ def clean_ann(df,column_list):
 
 
     return df
+
+
+def dropna_thresh(dataframe):
+    """Dropping the rows with more than 10 nan values 
+    and columns with more than 7000 nans """
+
+    dataframe.dropna(thresh=20, inplace =True)
+    column_drop = []
+    for col in dataframe.columns:
+        if dataframe[col].isna().sum() > 7000:
+            column_drop.append(col)
+    dataframe = dataframe.drop(columns = column_drop)
+    return dataframe
+
+
+def encode(dataframe):
+    """ 
+    1. sex column has 'F' and 'M' entries
+    2. on_thyroxine,query_on_thyroxine,on_antithyroid_medication,sick,pregnant
+    thyroid_surgery,I131_treatment,query_hypothyroid,lithium,goitre,tumor,hypopituitary
+    psych has 'f' and 't entries'
+    3. TSH_measured,T3_measured,TT4_measured,T4U_measured,FTI_measured has 'f','n','t','y' entries
+        """
+    dataframe['sex'] = dataframe['sex'].replace({'F':1, 'M':0})
+    dataframe = dataframe.replace({"t":1,"f":0})
+    dataframe = dataframe.replace({"y":1, "n":0})
+    dataframe['Class'] = dataframe['Class'].replace({"negative":0,"hypothyroid":1,"hyperthyroid":2,"sick-euthyroid":3})
+    for col in dataframe.columns:
+        try:
+            dataframe[col] = dataframe[col].apply(pd.to_numeric , errors = 'coerce')
+        except:
+            pass
+    return dataframe
