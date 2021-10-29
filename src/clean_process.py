@@ -8,7 +8,7 @@ import os
 from get_data import read_params,get_data
 import argparse
 import pandas as pd
-from utils.data_cleaning import assign_columns_to_df,removenumber,cleanclasscolumn,clean_thyroid0387,clean_hypothyroid_sickeuthyroid
+from utils.data_cleaning import assign_columns_to_df,removenumber,cleanclasscolumn,clean_thyroid0387,clean_hypothyroid_sickeuthyroid,clean_ann
 
 
 def clean_process(config_path):
@@ -54,6 +54,7 @@ def clean_process(config_path):
     df_allhypo      = cleanclasscolumn(df_allhypo, ['compensated hypothyroid', 'primary hypothyroid','secondary hypothyroid'],'hypothyroid')
     df_allhypotest  = cleanclasscolumn( df_allhypotest, ['compensated hypothyroid', 'primary hypothyroid','secondary hypothyroid'],'hypothyroid')
 
+    # concatenating df_allhyper,df_allhypertest,df_allhypo,df_allhypotest
     df_hh = pd.concat([df_allhyper,df_allhypertest,df_allhypo,df_allhypotest], ignore_index = True)
 
     # dropping the duplicate columns
@@ -68,9 +69,17 @@ def clean_process(config_path):
     df_hypothyroid   = clean_hypothyroid_sickeuthyroid(df_hypothyroid)
     df_sickeuthyroid = clean_hypothyroid_sickeuthyroid(df_sickeuthyroid)
 
+    # cleaning df_anntest and ann_test
+    df_anntest = clean_ann(df_anntest,columns_ann)
+    df_anntrain = clean_ann(df_anntrain,columns_ann)
+
+
+    # concatenating ann train and test
+    ann = pd.concat([df_anntrain,df_anntest], ignore_index = True)
     
 
-
+    #concatenating df_hh,df_thyroid0387,df_hypothyroid,df_sickeuthyroid,ann
+    data = pd.concat([df_hh,df_thyroid0387,df_hypothyroid,df_sickeuthyroid,ann], ignore_index = True)
 
 
 

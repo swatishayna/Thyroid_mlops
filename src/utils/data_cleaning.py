@@ -56,3 +56,33 @@ def clean_hypothyroid_sickeuthyroid(df):
 
 
     return df
+
+def clean_ann(df,column_list):
+    df = df.iloc[:,0].str.split(' ', expand=True)
+    df = df.drop(columns = [22,23])
+    assign_columns_to_df(df,column_list)
+    for col in df.columns:
+        df[col] = pd.to_numeric(df[col])
+
+    df['sex'] = df['sex'].map({0:'F',1:'M'})
+    df['Class'] = df['Class'].map({3:'negative',2:'hypothyroid',1:'hyperthyroid'})
+
+    continuos_attributes = ['age','TSH','T3','TT4','T4U','FTI']
+    for attribute in continuos_attributes:
+        df[attribute] = df[attribute] * 100
+
+    def fillNewAttributes(row,attribute):
+        if row[attribute] > 0:
+            return 'y'
+        else:
+            return 'n'
+
+    df['TSH_measured'] = df.apply(lambda row: fillNewAttributes(row,'TSH'), axis=1)
+    df['T3_measured'] = df.apply(lambda row: fillNewAttributes(row,'T3'), axis=1)
+    df['TT4_measured'] = df.apply(lambda row: fillNewAttributes(row,'TT4'), axis=1)
+    df['T4U_measured'] = df.apply(lambda row: fillNewAttributes(row,'T4U'), axis=1)
+    df['FTI_measured'] = df.apply(lambda row: fillNewAttributes(row,'FTI'), axis=1)
+
+
+
+    return df
