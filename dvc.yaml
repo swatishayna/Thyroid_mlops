@@ -1,0 +1,28 @@
+stages:
+  load_data:
+    cmd: python src/load_data.py --config=params.yaml
+    deps:
+    - src/get_data.py
+    - src/load_data.py
+    - data_given/allhyper.data
+    - data_given/allhyper.test
+    - data_given/allhypo.data
+    - data_given/allhypo.test
+    - data_given/thyroid0387.data
+    - data_given/hypothyroid.data
+    - data_given/sick-euthyroid.data
+    - data_given/ann-test.data
+    - data_given/ann-train.data
+
+    outs:
+    - data/raw/allhyper.data
+    - data/raw/allhyper.test
+    - data/raw/allhypo.data
+    - data/raw/allhypo.test
+    - data/raw/thyroid0387.data
+    - data/raw/hypothyroid.data
+    - data/raw/sick-euthyroid.data
+    - data/raw/ann-test.data
+    - data/raw/ann-train.data
+
+      

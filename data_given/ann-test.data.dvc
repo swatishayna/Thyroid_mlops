@@ -1,0 +1,4 @@
+outs:
+- md5: ce980cf801b4d5eeb99509c4ec03a024
+  size: 241196
+  path: ann-test.data

@@ -1,0 +1,4 @@
+outs:
+- md5: 94ef6f6e9c3eaa9dd4884ae7d829660a
+  size: 264725
+  path: ann-train.data
