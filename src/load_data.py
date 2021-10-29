@@ -3,6 +3,7 @@
 import os
 from get_data import read_params,get_data
 import argparse
+import pandas as pd
 
 def load_save(config_path):
     config = read_params(config_path)
@@ -21,15 +22,15 @@ def load_save(config_path):
     raw_dir_path = config['load_data']['raw_dataset']
 
     # saving the datsaets to desired location
-    df_allhyper.to_csv(os.path.join(raw_dir_path,config['data_source']['allhyper']))
-    df_allhypertest.to_csv(os.path.join(raw_dir_path,config['data_source']['allhypertest']))
-    df_allhypo.to_csv(os.path.join(raw_dir_path,config['data_source']['allhypo']))
-    df_allhypotest.to_csv(os.path.join(raw_dir_path,config['data_source']['allhypotest']))
-    df_thyroid0387.to_csv(os.path.join(raw_dir_path,config['data_source']['thyroid0387']))
-    df_hypothyroid.to_csv(os.path.join(raw_dir_path,config['data_source']['hypothyroid']))
-    df_sickeuthyroid.to_csv(os.path.join(raw_dir_path,config['data_source']['sickeuthyroid']))
-    df_anntest.to_csv(os.path.join(raw_dir_path,config['data_source']['anntest']))
-    df_anntrain.to_csv(os.path.join(raw_dir_path,config['data_source']['anntrain']))
+    df_allhyper.to_csv(os.path.join(raw_dir_path,config['data_source']['allhyper']),index = False)
+    df_allhypertest.to_csv(os.path.join(raw_dir_path,config['data_source']['allhypertest']),index = False)
+    df_allhypo.to_csv(os.path.join(raw_dir_path,config['data_source']['allhypo']),index = False)
+    df_allhypotest.to_csv(os.path.join(raw_dir_path,config['data_source']['allhypotest']),index = False)
+    df_thyroid0387.to_csv(os.path.join(raw_dir_path,config['data_source']['thyroid0387']),index = False)
+    df_hypothyroid.to_csv(os.path.join(raw_dir_path,config['data_source']['hypothyroid']),index = False)
+    df_sickeuthyroid.to_csv(os.path.join(raw_dir_path,config['data_source']['sickeuthyroid']),index = False)
+    df_anntest.to_csv(os.path.join(raw_dir_path,config['data_source']['anntest']),index = False)
+    df_anntrain.to_csv(os.path.join(raw_dir_path,config['data_source']['anntrain']),index = False)
 
 
 
