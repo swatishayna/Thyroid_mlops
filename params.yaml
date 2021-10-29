@@ -1,6 +1,6 @@
 base:
   project: thyroid prediction project
-  random_state: 10
+  random_state: 42
   target_col: Class
 
 data_source:
@@ -26,3 +26,11 @@ data_cleaning_processing:
   columns_ann:               ["age","sex" ,"on_thyroxine", "query_on_thyroxine" ,  "on_antithyroid_medication" , "sick", "pregnant","thyroid_surgery" ,"I131_treatment"  ,"query_hypothyroid" ,"query_hyperthyroid" ,"lithium","goitre" , "tumor" ,"hypopituitary","psych","TSH"  ,"T3" ,"TT4", "T4U" ,"FTI", "Class" ]                                             
   processed_dataset: data/processed
   processed_filename: preprocessed_dataset.csv
+
+
+
+traintestsplit:
+  train_filename: train.csv
+  test_filename: test.csv
+  test_size: 0.30
+  

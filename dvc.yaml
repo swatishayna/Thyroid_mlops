@@ -42,4 +42,14 @@ stages:
     outs:
     - data/processed/preprocessed_dataset.csv
 
+  split_data:
+    cmd: python src/train_test_split.py --config=params.yaml
+    deps:
+    - src/get_data.py
+    - data/processed/preprocessed_dataset.csv
+    - src/train_test_split.py
+    outs:
+    - data/processed/train.csv
+    - data/processed/test.csv
+
       
