@@ -30,7 +30,22 @@ data_cleaning_processing:
 
 
 traintestsplit:
+  scaler_model_dir: saved_scaler_models
+  scaler_filename: thyroid_scaler.pickle
+  all_data: ['age', 'sex', 'on_thyroxine', 'query_hypothyroid', 'query_hyperthyroid',
+       'psych', 'TSH_measured', 'TSH', 'T3_measured', 'T3', 'TT4_measured',
+       'TT4', 'T4U_measured', 'FTI_measured', 'FTI','Class']
   train_filename: train.csv
   test_filename: test.csv
   test_size: 0.30
+
+train_evaluate:
+  selected_features: ['age', 'sex', 'on_thyroxine', 'query_hypothyroid', 'query_hyperthyroid',
+       'psych', 'TSH_measured', 'TSH', 'T3_measured', 'T3', 'TT4_measured',
+       'TT4', 'T4U_measured', 'FTI_measured', 'FTI']
   
+  class_weight: 'balanced'
+  model_filename: thyroid_model.pkl
+  
+reports:
+  scores: reports/scores.json

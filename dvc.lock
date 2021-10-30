@@ -114,12 +114,37 @@ stages:
       md5: f8668211f145f696cc54450602f7b1ae
       size: 1601
     - path: src/train_test_split.py
-      md5: a69ac16e1c62b52fa124d8747d71c14e
-      size: 1686
+      md5: 85c52ef093a827f30051df9860aa161b
+      size: 2319
+    - path: src/utils/training.py
+      md5: 33c16a0e41dffc7b47ee90d35716bfbb
+      size: 1615
     outs:
     - path: data/processed/test.csv
-      md5: c8799ae53f3ba956da4b5bc64596822f
-      size: 804085
+      md5: c8b746d26c32f72153a2fe04ac748eab
+      size: 59850
     - path: data/processed/train.csv
-      md5: f9d3e51d0c763eb4c84ab1debcd153a4
-      size: 1874954
+      md5: 0eb58d100f185d927beb358b40a9ef71
+      size: 139196
+    - path: saved_scaler_models/thyroid_scaler.pickle
+      md5: 6706b847d11dd8bf67f68ae4030c0db1
+      size: 1498
+  trainevaluate:
+    cmd: python src/train_evaluate.py --config=params.yaml
+    deps:
+    - path: data/processed/test.csv
+      md5: c8b746d26c32f72153a2fe04ac748eab
+      size: 59850
+    - path: data/processed/train.csv
+      md5: 0eb58d100f185d927beb358b40a9ef71
+      size: 139196
+    - path: src/get_data.py
+      md5: f8668211f145f696cc54450602f7b1ae
+      size: 1601
+    outs:
+    - path: reports/scores.json
+      md5: 5315c77542f70834bbbd75b53a1d3961
+      size: 124
+    - path: saved_scaler_models/thyroid_model.pkl
+      md5: fa6a65366842295b888339b6dee23374
+      size: 411900

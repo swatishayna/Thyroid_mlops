@@ -48,8 +48,22 @@ stages:
     - src/get_data.py
     - data/processed/preprocessed_dataset.csv
     - src/train_test_split.py
+    - src/utils/training.py
+
     outs:
     - data/processed/train.csv
     - data/processed/test.csv
+    - saved_scaler_models/thyroid_scaler.pickle
 
-      
+  trainevaluate:
+    cmd: python src/train_evaluate.py --config=params.yaml
+    deps:
+    - data/processed/train.csv
+    - data/processed/test.csv
+    - src/get_data.py
+    
+    metrics:
+    - reports/scores.json:
+        cache: false
+    outs:
+    - saved_scaler_models/thyroid_model.pkl 
