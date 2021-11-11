@@ -3,4 +3,4 @@
     
 ```
 
-https://github.com/swatishayna/Thyriod_Detection.git
+## https://github.com/swatishayna/Thyriod_Detection.git
