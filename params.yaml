@@ -49,3 +49,7 @@ train_evaluate:
   
 reports:
   scores: reports/scores.json
+  
+scaler_model_dir:
+  scaler_dirpath: saved_scaler_models/thyroid_scaler.pickle
+  model_dirpath: saved_scaler_models/thyroid_model.pkl
