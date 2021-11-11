@@ -3,6 +3,7 @@ import pickle
 import gzip
 import numpy as np
 from src.get_data import read_params
+import os
 
 
 st.title('Thyroid Prediction App')
@@ -55,20 +56,21 @@ if submit:
 
     config_path = "params.yaml"
     config = read_params(config_path)
-    scaler_dirpath = config["scaler_model_dir"]["scaler_dirpath"]
-    model_dirpath = config["scaler_model_dir"]["model_dirpath"]
+    scaler_model_dirpath = config["scaler_model_dir"]["scaler_model_dirpath"]
+    scaler_file = config["scaler_model_dir"]["scaler_file"]
+    model_file = config["scaler_model_dir"]["model_file"]
 
 
 
     # scaling
     scaling = pickle.load(
-        open(scaler_dirpath, "rb"))
+        open(os.path.join(scaler_model_dirpath,scaler_file), "rb"))
     input_scaled = scaling.transform([input_list])
     input_list_reshaped = np.array(input_scaled).reshape(1, -1)
 
     # loading the stored model for prediction
     model = pickle.load(
-        gzip.open(model_dirpath, 'rb'), encoding='latin1')
+        gzip.open(os.path.join(scaler_model_dirpath,model_file), 'rb'), encoding='latin1')
     output = model.predict(input_list_reshaped)
     print(output[-1])
 

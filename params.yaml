@@ -51,5 +51,6 @@ reports:
   scores: reports/scores.json
   
 scaler_model_dir:
-  scaler_dirpath: saved_scaler_models/thyroid_scaler.pickle
-  model_dirpath: saved_scaler_models/thyroid_model.pkl
+  scaler_model_dirpath: saved_scaler_models
+  scaler_file: thyroid_scaler.pickle
+  model_file: thyroid_model.pkl
