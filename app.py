@@ -54,13 +54,17 @@ if submit:
     print(input_list)
 
     #scaling
-    scaled_input = pickle.load(open("saved_scaler_models\thyroid_scaler.pickle", "rb"))        
-    
-    input_list_reshaped = np.array(scaled_input).reshape(1,-1)
+    scaling = pickle.load(open("saved_scaler_models/thyroid_scaler.pickle", "rb"))        
+    input_scaled = scaling.transform([input_list])
+    input_list_reshaped = np.array(input_scaled).reshape(1,-1)
     
     
     #loading the stored model for prediction
-    model = pickle.load(gzip.open('saved_scaler_models\thyroid_model.pkl', 'rb'), encoding ='latin1' )
+    model = pickle.load(gzip.open('saved_scaler_models/thyroid_model.pkl', 'rb'), encoding ='latin1' )
     output = model.predict(input_list_reshaped)
-    if output:
-        st.write(output)
+    print(output[-1])
+    
+    if output[-1] == 0:
+        st.write("Less chances")
+    else:
+        st.write("High chances")
