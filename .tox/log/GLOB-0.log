@@ -1,6 +1,6 @@
 action: GLOB, msg: packaging
 cwd: D:\data science\ineuron\Project\Thyroid_mlops
-cmd: 'd:\apps\anaconda\envs\ba\python.exe' setup.py sdist --formats=zip --dist-dir 'D:\data science\ineuron\Project\Thyroid_mlops\.tox\dist'
+cmd: 'd:\apps\anaconda\envs\ba\python.exe' setup.py sdist --formats=zip --dist-dir '.tox\dist'
 running sdist
 running egg_info
 writing src.egg-info\PKG-INFO
@@ -34,8 +34,7 @@ copying tests\__init__.py -> src-0.0.1\tests
 copying tests\conftest.py -> src-0.0.1\tests
 copying tests\test_config.py -> src-0.0.1\tests
 Writing src-0.0.1\setup.cfg
-creating D:\data science\ineuron\Project\Thyroid_mlops\.tox\dist
-creating 'D:\data science\ineuron\Project\Thyroid_mlops\.tox\dist\src-0.0.1.zip' and adding 'src-0.0.1' to it
+creating '.tox\dist\src-0.0.1.zip' and adding 'src-0.0.1' to it
 adding 'src-0.0.1'
 adding 'src-0.0.1\src'
 adding 'src-0.0.1\src.egg-info'

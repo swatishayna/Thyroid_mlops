@@ -1,7 +1,9 @@
 
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.utils import resample
-import gzip, pickle, pickletools
+import gzip
+import pickle
+import pickletools
 import pandas as pd
 
 # def get_correlation(df):
@@ -11,13 +13,12 @@ import pandas as pd
 #     return corr_values
 
 
-
-
-def scaled_df(df, scaler_fileppath,label):
+def scaled_df(df, scaler_fileppath, label):
     scaler = MinMaxScaler()
-    
-    data=pd.DataFrame(scaler.fit_transform(df.drop(columns =['Class'])),columns=df.columns[:-1])
-    pickle.dump(scaler, open(scaler_fileppath,'wb'))
+
+    data = pd.DataFrame(scaler.fit_transform(
+        df.drop(columns=['Class'])), columns=df.columns[:-1])
+    pickle.dump(scaler, open(scaler_fileppath, 'wb'))
     data[label] = df[label]
     return data
 
@@ -28,15 +29,19 @@ def scaled_df(df, scaler_fileppath,label):
 #     return X_train_sm,X_test_sm,y_train_sm,y_test_sm
 
 
-def under_sampled(df,target_col):
-    df_negative = df[df[target_col]==0]
-    df_hypothyroid = df[df[target_col]==1]
-    df_hyperthyroid = df[df[target_col]==2]
-    df_sickeuthyroid = df[df[target_col]==3]
+def under_sampled(df, target_col):
+    df_negative = df[df[target_col] == 0]
+    df_hypothyroid = df[df[target_col] == 1]
+    df_hyperthyroid = df[df[target_col] == 2]
+    df_sickeuthyroid = df[df[target_col] == 3]
 
-    df_negative_downsampled = resample(df_negative,replace=False,n_samples=300,random_state=1)
-    df_hypothyroid_downsampled = resample(df_hypothyroid,replace=False,n_samples=300,random_state=1)
-    df_hyperthyroid_downsampled = resample(df_hyperthyroid,replace=False,n_samples=300,random_state=1)
-    
-    df_downsampled = pd.concat([df_negative_downsampled,df_hypothyroid_downsampled,df_hyperthyroid,df_sickeuthyroid])
+    df_negative_downsampled = resample(
+        df_negative, replace=False, n_samples=300, random_state=1)
+    df_hypothyroid_downsampled = resample(
+        df_hypothyroid, replace=False, n_samples=300, random_state=1)
+    df_hyperthyroid_downsampled = resample(
+        df_hyperthyroid, replace=False, n_samples=300, random_state=1)
+
+    df_downsampled = pd.concat(
+        [df_negative_downsampled, df_hypothyroid_downsampled, df_hyperthyroid, df_sickeuthyroid])
     return df_downsampled
